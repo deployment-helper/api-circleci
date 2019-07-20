@@ -8,14 +8,14 @@ exports.mcrc_pipeline_circleci = function(req, resp) {
       case "POST":
         if (
           body.access_token &&
-          body.vcs &&
-          body.username &&
+          body.vcs_type &&
+          body.user_name &&
           body.project_name
         ) {
           const circleCI = new CircleCI(
             body.access_token,
-            body.vcs,
-            body.username,
+            body.vcs_type,
+            body.user_name,
             body.project_name
           );
           circleCI
@@ -48,13 +48,16 @@ exports.mcrc_pipeline_circleci_variables = function(req, resp) {
     switch (method) {
       case "POST":
         if (
-          (body.access_token && body.vcs && body.username && body.project_name,
+          (body.access_token &&
+            body.vcs_type &&
+            body.user_name &&
+            body.project_name,
           body.variables)
         ) {
           const circleCI = new CircleCI(
             body.access_token,
-            body.vcs,
-            body.username,
+            body.vcs_type,
+            body.user_name,
             body.project_name
           );
           circleCI
