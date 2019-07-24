@@ -44,7 +44,7 @@ class CircleCI {
                 })
                 resolve(data);
             }).catch(error=>{
-                throw error;
+                reject(error)
             })
         } catch (error) {
             console.error(error);

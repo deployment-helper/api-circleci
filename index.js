@@ -66,7 +66,8 @@ exports.mcrc_pipeline_circleci_variables = function(req, resp) {
               resp.send(createSuccessResp("Success", data));
             })
             .catch(err => {
-              throw err;
+              console.error(err);
+              resp.send(createErrResp("ERROR", err));
             });
         } else {
           throw new Error(
@@ -108,7 +109,7 @@ function createErrResp(message, err) {
   const respJson = JSON.parse(JSON.stringify(message_format));
   let resp_body = {};
   (resp_body.status = "FAIL"), (resp_body.message = message);
-  resp_body.err = err;
+  resp_body.err = err.toString();
   respJson.body = resp_body;
   return respJson;
 }
