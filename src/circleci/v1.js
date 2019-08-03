@@ -35,7 +35,7 @@ class CircleCI {
             let promises = [];
             for(let index=0;index < variables.length;index++){
                 let item = variables[index];
-                promises.push(axios.post(URL,{name:item.name,value:item.value}));
+                promises.push(axios.post(URL,{name:item.name,value:JSON.stringify(item.value)}));
             }
             Promise.all(promises).then(values=>{
                 const data=[];
